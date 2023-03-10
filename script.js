@@ -1,24 +1,26 @@
 
-const request = new XMLHttpRequest();
-
-request.addEventListener("load", function() {
-	if (request.status >= 200 && request.status < 300) {
-		console.log(request.response);
-    }
-});
-request.open("GET", "someurl");
-request.send();
-let xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       
-       document.getElementById("demo").innerHTML = xhttp.responseText;
-    }
-};
-xhttp.open("GET", "filename", true);
-xhttp.send();
 // bats CRUD
-const bat=document
+// Get Bats
+const bat=document.getElementById('bats').addEventListener('click',(e)=>{
+    alert(`you clicked ${e.target.innerHTML}`)
+fetch('https://cat-fact.herokuapp.com/facts').then(res=>res.json()).then(dat=>{
+
+})
+
+})
+// create Bat
+// data={
+// 
+// }
+// fetch('https://cat-fact.herokuapp.com/facts').then(res=>res.json()).then(dat=>console.log(data))
+// 
+// 
+// 
+// 
+// 
+
+
+
 
 // enumerators-CRUD
 
