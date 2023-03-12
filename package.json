@@ -1,0 +1,25 @@
+{
+  "name": "thebat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon server.js"
+  },
+ 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otienosteve/thebat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/otienosteve/thebat/issues"
+  },
+  "homepage": "https://github.com/otienosteve/thebat#readme",
+  "dependencies": {
+    "firebase-admin": "^11.5.0"
+  }
+}
