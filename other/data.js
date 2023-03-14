@@ -24,7 +24,7 @@ pr=console.log
     console.log("ERROR:\n" + error);
     return { teams: [] };
   });
-console.log(Promise.resolve(data).then(data=>console.log(data)))
+// console.log(Promise.resolve(data).then(data=>console.log(data)))
   
 
       
