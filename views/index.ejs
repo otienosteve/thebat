@@ -32,7 +32,7 @@
 
 <div class="container-fluid">
     <div class="row">
-     <div class="col-md-5 container-1"><%= bats %>Bats</div>
+     <div class="col-md-5 container-1"><%= bats %> Bats</div>
      <div class="col-md-5 container-2"><%= enumarators.length %> Enumerators</div>
      <div class="col-md-5 container-3">Clusters</div>
      <div class="col-md-5 container-4"><%= site.length %> Sites</div>
@@ -41,14 +41,16 @@
 <style>
 
 .col-md-5{
-  height:180px;
-  margin:10px;
+  height:15vmax;
+  width:44vmin;
+  margin:2.2rem;
   border-radius:2rem;
   text-align: center;
   font-weight: bold;
   display:flex;
   justify-content: center;
-  align-content: center;
+  /* justify-items: center; */
+  align-items: center;
   font-size:30px;
   
 }
