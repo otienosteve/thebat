@@ -1,8 +1,14 @@
 
 const express=require('express')
 const app= express()
+const  { Parser } =require('json2csv') ;
 var admin = require("firebase-admin");
 var serviceAccount = require("./conservation-programme-firebase-adminsdk-s1tmf-7e9429afa6.json");
+
+
+
+
+// console.log(Parser)
 app.set('view engine', 'ejs')
 app.listen(3000,'0.0.0.0')
 admin.initializeApp({
@@ -41,6 +47,7 @@ const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
                 
              bat=bats.map(n=>+n).reduce((a,v)=>a+=v)
                 app.get('/',(req,res)=>{
+        
                     res.render('index',{site:site,enumarators:enumarators,bats:bat,allData:allData})
                 
                 })
@@ -63,6 +70,13 @@ const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
                 
                 res.render('sites',{site:site})
 
+                })
+                app.get('/csvdata',(req,res)=>{
+                    const csvdata= new Parser()
+                    const parsed=csvdata.parse(allData)
+                    res.setHeader("Content-Type", "text/csv");
+                    res.setHeader("Content-Disposition", "attachment; filename=data.csv");
+                    res.status(200).end(parsed);
                 })
             
         })
