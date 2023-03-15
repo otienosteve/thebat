@@ -31,10 +31,11 @@
       </nav>
 
 <div class="container-fluid">
+  <div class="title text-center"><h3>Survey Summary</h3></div>
     <div class="row">
      <div class="col-md-5 container-1"><%= bats %> Bats</div>
      <div class="col-md-5 container-2"><%= enumarators.length %> Enumerators</div>
-     <div class="col-md-5 container-3">Clusters</div>
+     <!-- <div class="col-md-5 container-3">Clusters</div> -->
      <div class="col-md-5 container-4"><%= site.length %> Sites</div>
     </div>
 </div>
@@ -42,17 +43,19 @@
 
 .col-md-5{
   height:15vmax;
-  width:44vmin;
+  width:50vmin;
   margin:2.2rem;
   border-radius:2rem;
   text-align: center;
   font-weight: bold;
   display:flex;
   justify-content: center;
-  /* justify-items: center; */
   align-items: center;
   font-size:30px;
   
+}
+.row{
+  padding: 2rem;
 }
 .container-1{
   background-color: rgb(45,78,12);
@@ -66,11 +69,34 @@
 .container-3{
   background-color: rgb(157, 114, 15);
 }
+table, th, td {
+    width: 20%;
+    margin: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
 
 </style>
 
+<table>
+  <tr>
+    <th>Clusters</th>
+    <th>Question 1</th>
+    <th>Question 1</th>
+    <th>Question 2</th>
+    <th>Question 3</th>
+    <th>Question 4</th>
+    <th>Question 5</th>
+    <th>Data</th>
+    <th>Enumerator Name</th>
+    <th>Form</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>N0 of Bats</th>
+    <th>Site</th>
+  </tr>
 <% for( let data of allData ) { %>
-  <table border="true">
     <tr>
   <% for( let form in data ) { %>
           <td><%=data[form] %></td>
@@ -78,8 +104,8 @@
           
           <% } %>
         </tr>
+        <% } %>
       </table>
-<% } %>
     
 
 
