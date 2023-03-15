@@ -81,6 +81,8 @@ const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
             
         })
     })
+app.use('/.netlify/functions/api', router);
+module.exports.handler = serverless(app);
 
 
 
