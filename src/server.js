@@ -6,7 +6,7 @@ const  { Parser } =require('json2csv') ;
 // const router=express.Router()
 
 var admin = require("firebase-admin");
-var serviceAccount = require("./conservation-programme-firebase-adminsdk-s1tmf-7e9429afa6.json");
+var serviceAccount = require("./../conservation-programme-firebase-adminsdk-s1tmf-7e9429afa6.json");
 
 
 
