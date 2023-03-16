@@ -2,6 +2,9 @@
 const express=require('express')
 const app= express()
 const  { Parser } =require('json2csv') ;
+// const serverless=require('serverless-http')
+// const router=express.Router()
+
 var admin = require("firebase-admin");
 var serviceAccount = require("./conservation-programme-firebase-adminsdk-s1tmf-7e9429afa6.json");
 
@@ -10,7 +13,7 @@ var serviceAccount = require("./conservation-programme-firebase-adminsdk-s1tmf-7
 
 // console.log(Parser)
 app.set('view engine', 'ejs')
-app.listen(3000,'0.0.0.0')
+app.listen(3030,'0.0.0.0')
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     //   The database URL depends on the location of the database
@@ -81,8 +84,6 @@ const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
             
         })
     })
-app.use('/.netlify/functions/api', router);
-module.exports.handler = serverless(app);
 
 
 
