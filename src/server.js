@@ -33,7 +33,7 @@ ref.once("value",function(snap) {
         let  keys=Object.keys(childNodes.val())
         let  cord=[]
         datafound=true
-        console.log("Go get values") 
+        console.log("Data Vailable") 
         for( let i of keys){
             // console.log(childNodes.val())
             allData.push(childNodes.val()[i])
@@ -87,15 +87,19 @@ ref.once("value",function(snap) {
             res.setHeader("Content-Disposition", "attachment; filename=data.csv");
             res.status(200).end(parsed);
         })
-        if(!datafound){
-            app.use(function(req,res,next){ 
-                res.status(404).render('404'); 
-            }); 
-        }
-    })
+        app.use(function(req,res,next){ 
+            res.status(404).render('404'); 
+        }); 
+    
 })
-        
-        
+})
+
+
+if(datafound){
+    app.use(function(req,res,next){ 
+        res.status(404).render('404'); 
+    }); 
+}
 
 
 
