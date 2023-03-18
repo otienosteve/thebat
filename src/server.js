@@ -13,7 +13,7 @@ var serviceAccount = require("./../conservation-programme-firebase-adminsdk-s1tm
 
 // console.log(Parser)
 app.set('view engine', 'ejs')
-app.listen(3030,'0.0.0.0')
+app.listen(3000,'0.0.0.0')
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     //   The database URL depends on the location of the database

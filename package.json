@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src"
+    "predeploy" : "npm install",
+    "deploy" : "gh-pages node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "json2csv": "^6.0.0-alpha.2",
     "serverless": "^3.28.1",
     "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
