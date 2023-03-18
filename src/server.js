@@ -22,7 +22,7 @@ admin.initializeApp({
     databaseURL: "https://conservation-programme-default-rtdb.firebaseio.com/"
 });
 
-
+let datafound=false
 
 var db = admin.database();
 var ref = db.ref("/data/");
@@ -32,68 +32,70 @@ ref.once("value",function(snap) {
      snap.forEach(function(childNodes){
         let  keys=Object.keys(childNodes.val())
         let  cord=[]
+        datafound=true
         console.log("Go get values") 
         for( let i of keys){
-            console.log(childNodes.val())
+            // console.log(childNodes.val())
             allData.push(childNodes.val()[i])
             clusters.push(childNodes.val()[i]['clusters'])
-                // pr(childNodes.val()[i]['clusters'].map(n=>+n).reduce((a,v)=>a+=v)) //numBats:
-                bats.push(childNodes.val()[i]['numBats'])
-                sites.push(childNodes.val()[i]['site'])
-                cord.push({
-                        latitude:childNodes.val()[i]['latitude'],
-                        longitude:childNodes.val()[i]['longitude']
-                    })
-                enumarators.push(childNodes.val()[i]["enumerator_name"])
-                
-                }
-                let site=[...new Set(sites)]
-                // bats=bats.map(n=>+n).reduce((a,v)=>a+=v)
-                geoloc.push(cord)
-                // pr(bats)
-                // pr(cord)
-                
-             bat=bats.map(n=>+n).reduce((a,v)=>a+=v)
-                app.get('/thebat/',(req,res)=>{
-        
-                    res.render('index',{site:site,enumarators:enumarators,bats:bat,allData:allData})
-                
-                })
-                app.get('/thebat/bats',(req,res)=>{
-                     bat=bats.map(n=>+n).reduce((a,v)=>a+=v)
-                    res.render('bats',{bats:bat})
-                })
-                app.get('/thebat/clusters',(req,res)=>{
-                
-                res.render('clusters')
-                })
-                app.get('/enumarators',(req,res)=>{
-                    let enums=new Set(enumarators)
-                    enums=[...enums]
-                res.render('enumarators',{enumarators:enums})
-                
-                
-                })
-                app.get('thebat/sites',(req,res)=>{
-                
-                res.render('sites',{site:site})
-
-                })
-                app.get('thebat/csvdata',(req,res)=>{
-                    const csvdata= new Parser()
-                    const parsed=csvdata.parse(allData)
-                    res.setHeader("Content-Type", "text/csv");
-                    res.setHeader("Content-Disposition", "attachment; filename=data.csv");
-                    res.status(200).end(parsed);
-                })
-                
+            // pr(childNodes.val()[i]['clusters'].map(n=>+n).reduce((a,v)=>a+=v)) //numBats:
+            bats.push(childNodes.val()[i]['numBats'])
+            sites.push(childNodes.val()[i]['site'])
+            cord.push({
+                latitude:childNodes.val()[i]['latitude'],
+                longitude:childNodes.val()[i]['longitude']
             })
+            enumarators.push(childNodes.val()[i]["enumerator_name"])
+            
+        }
+        let site=[...new Set(sites)]
+        // bats=bats.map(n=>+n).reduce((a,v)=>a+=v)
+        geoloc.push(cord)
+        // pr(bats)
+        // pr(cord)
+        
+        bat=bats.map(n=>+n).reduce((a,v)=>a+=v)
+        app.get('/',(req,res)=>{
+            
+            res.render('index',{site:site,enumarators:enumarators,bats:bat,allData:allData})
+            
         })
+        app.get('/bats',(req,res)=>{
+            bat=bats.map(n=>+n).reduce((a,v)=>a+=v)
+            res.render('bats',{bats:bat})
+        })
+        app.get('/clusters',(req,res)=>{
+            
+            res.render('clusters')
+        })
+        app.get('/enumarators',(req,res)=>{
+            let enums=new Set(enumarators)
+            enums=[...enums]
+            res.render('enumarators',{enumarators:enums})
+            
+            
+        })
+        app.get('/sites',(req,res)=>{
+            
+            res.render('sites',{site:site})
+            
+        })
+        app.get('/csvdata',(req,res)=>{
+            const csvdata= new Parser()
+            const parsed=csvdata.parse(allData)
+            res.setHeader("Content-Type", "text/csv");
+            res.setHeader("Content-Disposition", "attachment; filename=data.csv");
+            res.status(200).end(parsed);
+        })
+        if(!datafound){
+            app.use(function(req,res,next){ 
+                res.status(404).render('404'); 
+            }); 
+        }
+    })
+})
         
         
-        app.use(function(req,res,next){ 
-            res.status(404).render('404'); 
-        }); 
 
 
 
