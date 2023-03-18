@@ -6,7 +6,7 @@ const  { Parser } =require('json2csv') ;
 // const router=express.Router()
 
 var admin = require("firebase-admin");
-var serviceAccount = require("./../conservation-programme-firebase-adminsdk-s1tmf-7e9429afa6.json");
+var serviceAccount = require("./conservation-programme-firebase-adminsdk-s1tmf-7e9429afa6.json");
 
 
 
@@ -21,17 +21,21 @@ admin.initializeApp({
     //   The database URL depends on the location of the database
     databaseURL: "https://conservation-programme-default-rtdb.firebaseio.com/"
 });
-//   pr=console.log
+
+
+
 var db = admin.database();
 var ref = db.ref("/data/");
-ref.once("value",function(snap) {
 const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
+
+ref.once("value",function(snap) {
+    console.log("getting values")
      snap.forEach(function(childNodes){
-        var keys=Object.keys(childNodes.val())
-         
-        var cord=[]
+        let  keys=Object.keys(childNodes.val())
+        let  cord=[]
+        console.log("Go get values")
         for( let i of keys){
-            // console.log(childNodes.val())
+            console.log(childNodes.val())
             allData.push(childNodes.val()[i])
             clusters.push(childNodes.val()[i]['clusters'])
                 // pr(childNodes.val()[i]['clusters'].map(n=>+n).reduce((a,v)=>a+=v)) //numBats:
@@ -83,6 +87,9 @@ const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
                     res.setHeader("Content-Disposition", "attachment; filename=data.csv");
                     res.status(200).end(parsed);
                 })
+                app.get("/thebat/:universalURL", (req, res) => {
+                    res.send("404 URL NOT FOUND");
+                 });
             
         })
     })
