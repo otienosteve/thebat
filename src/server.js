@@ -33,7 +33,7 @@ ref.once("value",function(snap) {
         let  keys=Object.keys(childNodes.val())
         let  cord=[]
         datafound=true
-        console.log("Data Vailable") 
+        console.log("Data avilable") 
         for( let i of keys){
             // console.log(childNodes.val())
             allData.push(childNodes.val()[i])
