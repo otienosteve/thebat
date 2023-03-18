@@ -29,11 +29,10 @@ var ref = db.ref("/data/");
 const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
 
 ref.once("value",function(snap) {
-    console.log("getting values")
      snap.forEach(function(childNodes){
         let  keys=Object.keys(childNodes.val())
         let  cord=[]
-        console.log("Go get values")
+        console.log("Go get values") 
         for( let i of keys){
             console.log(childNodes.val())
             allData.push(childNodes.val()[i])
@@ -87,12 +86,14 @@ ref.once("value",function(snap) {
                     res.setHeader("Content-Disposition", "attachment; filename=data.csv");
                     res.status(200).end(parsed);
                 })
-                app.get("/thebat/:universalURL", (req, res) => {
-                    res.send("404 URL NOT FOUND");
-                 });
-            
+                
+            })
         })
-    })
+        
+        
+        app.use(function(req,res,next){ 
+            res.status(404).render('404'); 
+        }); 
 
 
 
