@@ -77,7 +77,7 @@ ref.once("value",function(snap) {
         })
         app.get('/sites',(req,res)=>{
             
-            res.render('sites',{site:site})
+            res.render('sites',{sites:site})
             
         })
         app.get('/csvdata',(req,res)=>{
