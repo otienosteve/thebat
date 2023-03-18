@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "predeploy" : "npm install",
-    "deploy" : "gh-pages node src/server.js"
+    "predeploy": "npm install",
+    "deploy": "gh-pages node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,5 @@
     "json2csv": "^6.0.0-alpha.2",
     "serverless": "^3.28.1",
     "serverless-http": "^3.2.0"
-  },
-  "devDependencies": {
-    "gh-pages": "^5.0.0"
   }
 }

@@ -13,7 +13,9 @@ var serviceAccount = require("./../conservation-programme-firebase-adminsdk-s1tm
 
 // console.log(Parser)
 app.set('view engine', 'ejs')
-app.listen(3000,'0.0.0.0')
+app.listen(3000,'0.0.0.0',()=>{
+    console.log("Server running")
+})
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     //   The database URL depends on the location of the database
@@ -49,16 +51,16 @@ const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
                 // pr(cord)
                 
              bat=bats.map(n=>+n).reduce((a,v)=>a+=v)
-                app.get('/',(req,res)=>{
+                app.get('/thebat/',(req,res)=>{
         
                     res.render('index',{site:site,enumarators:enumarators,bats:bat,allData:allData})
                 
                 })
-                app.get('/bats/',(req,res)=>{
+                app.get('/thebat/bats',(req,res)=>{
                      bat=bats.map(n=>+n).reduce((a,v)=>a+=v)
                     res.render('bats',{bats:bat})
                 })
-                app.get('/clusters',(req,res)=>{
+                app.get('/thebat/clusters',(req,res)=>{
                 
                 res.render('clusters')
                 })
@@ -69,12 +71,12 @@ const  clusters=[],bats=[],sites=[],enumarators=[],geoloc=[],allData=[]
                 
                 
                 })
-                app.get('/sites',(req,res)=>{
+                app.get('thebat/sites',(req,res)=>{
                 
                 res.render('sites',{site:site})
 
                 })
-                app.get('/csvdata',(req,res)=>{
+                app.get('thebat/csvdata',(req,res)=>{
                     const csvdata= new Parser()
                     const parsed=csvdata.parse(allData)
                     res.setHeader("Content-Type", "text/csv");
